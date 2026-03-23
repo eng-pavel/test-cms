@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
- * Показать пустое состояние рабочей области до открытия или создания статьи.
+ * Пустое состояние рабочей области.
  */
 @Component({
   selector: 'app-article-placeholder',

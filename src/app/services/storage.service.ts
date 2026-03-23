@@ -11,7 +11,7 @@ const SELECTED_ARTICLE_STORAGE_KEY = 'test-cms.selected-article-id';
   providedIn: 'root',
 })
 /**
- * Хранить статьи и аннотации в localStorage и отдавать реактивные данные приложению.
+ * Сервис хранения статей и аннотаций в localStorage.
  */
 export class StorageService {
   private readonly articlesState = signal<Article[]>(this.loadArticles());

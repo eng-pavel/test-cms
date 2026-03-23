@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 /**
- * Показать модальное подтверждение перед выполнением опасного действия.
+ * Модальное окно подтверждения опасного действия.
  */
 @Component({
   selector: 'app-confirm-dialog',

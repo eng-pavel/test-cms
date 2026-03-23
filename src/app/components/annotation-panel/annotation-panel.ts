@@ -34,7 +34,7 @@ const TOOLTIP_GAP = 6;
 const SURFACE_PADDING = 8;
 
 /**
- * Отобразить текст статьи, форму аннотации, подсказку и список сохраненных пометок.
+ * Панель текста статьи, аннотаций и подсказки.
  */
 @Component({
   selector: 'app-annotation-panel',

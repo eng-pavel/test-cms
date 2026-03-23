@@ -830,3 +830,19 @@ Page reload sent to client(s).
 Application bundle generation complete. [0.325 seconds] - 2026-03-23T20:54:56.318Z
 
 Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-MR36GFCY.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m[36m71.67 kB[39m[2m | [22m
+[32mchunk-DFKR6Q6F.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m[36m31.84 kB[39m[2m | [22m
+[32mchunk-GXK3MDMC.js[39m  [2m | [22m[2mshell[22m              [2m | [22m[36m18.27 kB[39m[2m | [22m
+[32mchunk-F3KGJWNL.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m8.91 kB[39m[2m | [22m
+[32mchunk-GT6W5OMX.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.50 kB[39m[2m | [22m
+[32mchunk-XWEKSJRQ.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m [36m7.20 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.762 seconds] - 2026-03-23T21:00:02.664Z
+
+Page reload sent to client(s).

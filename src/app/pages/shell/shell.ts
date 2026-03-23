@@ -5,7 +5,7 @@ import { ArticleSidebar } from '../../components/article-sidebar/article-sidebar
 import { StorageService } from '../../services/storage.service';
 
 /**
- * Построить основной каркас интерфейса с боковой панелью и маршрутизируемой рабочей областью.
+ * Каркас интерфейса с боковой панелью и рабочей областью.
  */
 @Component({
   selector: 'app-shell',

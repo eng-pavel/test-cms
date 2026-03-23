@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import type { ArticleDraft } from '../../interfaces/article.interface';
 
 /**
- * Отобразить форму создания и редактирования черновика статьи.
+ * Форма создания и редактирования черновика статьи.
  */
 @Component({
   selector: 'app-article-editor',

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 /**
- * Отобразить корневой router-outlet приложения.
+ * Корневой router-outlet приложения.
  */
 @Component({
   selector: 'app-root',

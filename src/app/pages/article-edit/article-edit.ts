@@ -16,7 +16,7 @@ import type { ArticleDraft } from '../../interfaces/article.interface';
 import { StorageService } from '../../services/storage.service';
 
 /**
- * Показать страницу создания новой статьи или редактирования существующей по маршруту.
+ * Страница создания и редактирования статьи.
  */
 @Component({
   selector: 'app-article-edit',
