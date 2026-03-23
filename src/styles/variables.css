@@ -1,0 +1,79 @@
+:root {
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-heading: Georgia, 'Times New Roman', serif;
+
+  --font-size-base: 1rem;
+  --font-size-eyebrow: 0.78rem;
+  --font-size-badge: 0.88rem;
+  --font-size-meta: 0.9rem;
+  --font-size-label: 0.92rem;
+
+  --color-transparent: transparent;
+  --color-white: #ffffff;
+
+  --color-text-primary: #172033;
+  --color-text-secondary: #5b6475;
+  --color-text-muted: #6b7280;
+  --color-text-label: #3a4353;
+  --color-text-soft: #526071;
+  --color-text-strong: #1f2937;
+  --color-text-status: #344054;
+  --color-text-warning: #6b4f00;
+  --color-text-info: #0c4a7a;
+  --color-text-info-soft: #374151;
+  --color-text-on-dark: #f8fafc;
+  --color-text-on-dark-soft: rgba(248, 250, 252, 0.74);
+  --color-danger: #b42318;
+  --color-danger-soft: #fff8f7;
+
+  --color-overlay: rgba(15, 23, 42, 0.32);
+
+  --color-surface-dialog: #fffdf9;
+  --color-surface-panel: rgba(255, 255, 255, 0.74);
+  --color-surface-panel-border: rgba(255, 255, 255, 0.7);
+  --color-surface-field: rgba(255, 255, 255, 0.84);
+  --color-surface-button: rgba(255, 255, 255, 0.7);
+  --color-surface-button-strong: rgba(255, 255, 255, 0.82);
+  --color-surface-toolbar: rgba(255, 255, 255, 0.9);
+  --color-surface-card: rgba(255, 255, 255, 0.72);
+  --color-surface-sidebar: rgba(248, 247, 243, 0.86);
+  --color-surface-tooltip: rgba(23, 32, 51, 0.96);
+  --color-surface-status: rgba(23, 32, 51, 0.06);
+  --color-surface-chip: rgba(23, 32, 51, 0.05);
+  --color-surface-chip-soft: rgba(23, 32, 51, 0.08);
+  --color-surface-warning: rgba(245, 159, 0, 0.12);
+  --color-surface-info: rgba(25, 113, 194, 0.12);
+  --color-surface-info-strong: rgba(240, 247, 255, 0.82);
+  --color-surface-empty: rgba(255, 255, 255, 0.62);
+
+  --color-line-base: rgba(23, 32, 51, 0.12);
+  --color-line-soft: rgba(23, 32, 51, 0.1);
+  --color-line-subtle: rgba(23, 32, 51, 0.08);
+  --color-line-dashed: rgba(23, 32, 51, 0.16);
+  --color-line-dashed-strong: rgba(23, 32, 51, 0.18);
+  --color-line-focus-soft: rgba(25, 113, 194, 0.24);
+  --color-line-focus: rgba(25, 113, 194, 0.45);
+  --color-outline-focus: rgba(25, 113, 194, 0.28);
+  --color-outline-strong: rgba(23, 32, 51, 0.14);
+
+  --shadow-panel: 0 28px 60px rgba(110, 124, 148, 0.16);
+  --shadow-toolbar: 0 12px 28px rgba(110, 124, 148, 0.12);
+  --shadow-card-active: 0 14px 32px rgba(23, 32, 51, 0.18);
+  --shadow-dialog: 0 24px 60px rgba(15, 23, 42, 0.22);
+  --shadow-tooltip: 0 18px 38px rgba(15, 23, 42, 0.28);
+  --shadow-ring: 0 0 0 3px rgba(23, 32, 51, 0.14);
+
+  --surface-paper:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 248, 252, 0.88)),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 31px,
+      rgba(23, 32, 51, 0.045) 31px,
+      rgba(23, 32, 51, 0.045) 32px
+    );
+
+  --surface-shell:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 35%),
+    linear-gradient(135deg, #f2efe8 0%, #f7f4ee 42%, #e8edf6 100%);
+}

@@ -1,0 +1,571 @@
+
+> test-cms@0.0.0 start
+> ng serve --port 4507
+
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m  [36m3.17 kB[39m[2m | [22m
+[32mchunk-VUJOFXKG.js[39m  [2m | [22m[2m-[22m                  [2m | [22m[36m938 bytes[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m             [2m | [22m[36m237 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m      [2m | [22m  [1m4.34 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mchunk-324FQLO5.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m [36m62.54 kB[39m[2m | [22m
+[32mchunk-JG5INJVD.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m [36m28.51 kB[39m[2m | [22m
+[32mchunk-WVRJFNZ4.js[39m  [2m | [22m[2mshell[22m              [2m | [22m [36m18.31 kB[39m[2m | [22m
+[32mchunk-L2KU4JMZ.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m7.99 kB[39m[2m | [22m
+[32mchunk-7BS3SSKS.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m  [36m6.96 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.239 seconds] - 2026-03-23T19:38:55.497Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: NG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed. Find more at https://v21.angular.dev/extended-diagnostics/NG8102[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/article-sidebar/article-sidebar.html:24:13:
+[37m      24 │           {{ [32mannotationCounts()[article.id] ?? 0[37m }} аннотац...
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Warning occurs in the template of component ArticleSidebar.
+
+    src/app/pages/cms/components/article-sidebar/article-sidebar.ts:8:15:
+[37m      8 │   templateUrl: [32m'./article-sidebar.html'[37m,
+        ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4507[22m/[39m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m[2m | [22m[1mRaw size[22m
+[32mchunk-2KMOPKDI.js[39m  [2m | [22m[2mshell[22m[2m | [22m[36m18.28 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.097 seconds] - 2026-03-23T19:39:55.454Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-3OLD233A.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m28.38 kB[39m[2m | [22m
+[32mchunk-ZVKLP7YP.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m17.94 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.451 seconds] - 2026-03-23T19:43:38.116Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-COKPK3A2.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m61.01 kB[39m[2m | [22m
+[32mchunk-C4KPCJFF.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m17.90 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.779 seconds] - 2026-03-23T19:44:46.397Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-BTVNJQUX.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m60.98 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.295 seconds] - 2026-03-23T19:45:01.534Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-2HFDKIYM.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m28.46 kB[39m[2m | [22m
+[32mchunk-IRUQTQCS.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m17.99 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.345 seconds] - 2026-03-23T19:48:31.887Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-PRPFXGNS.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m61.83 kB[39m[2m | [22m
+[32mchunk-IUVBO6OZ.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m18.01 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.359 seconds] - 2026-03-23T19:49:41.177Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-ESCLLRB6.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m61.90 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.876 seconds] - 2026-03-23T19:56:58.224Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-RWPOYA5P.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m61.90 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.237 seconds] - 2026-03-23T19:57:09.836Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-BNL6RM2Y.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.21 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.231 seconds] - 2026-03-23T19:59:37.845Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-36KPRVXS.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.28 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.198 seconds] - 2026-03-23T20:00:16.144Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-QO7O6TOJ.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.28 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.203 seconds] - 2026-03-23T20:00:23.915Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-H4RDV3M5.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.88 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.340 seconds] - 2026-03-23T20:03:24.055Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-Y3ALYIMV.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.92 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.229 seconds] - 2026-03-23T20:03:26.569Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-6LFHOP4Z.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m63.92 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.347 seconds] - 2026-03-23T20:03:29.756Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-D6KHIPZR.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m64.06 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.327 seconds] - 2026-03-23T20:05:08.086Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-SI73B5CS.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m64.40 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.215 seconds] - 2026-03-23T20:05:15.222Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-B3FNPKZF.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m64.79 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.622 seconds] - 2026-03-23T20:07:17.699Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-FUKHHWIE.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m66.90 kB[39m[2m | [22m
+[32mchunk-WMYRBSZK.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m30.52 kB[39m[2m | [22m
+[32mchunk-I7CZGU7P.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m7.29 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.320 seconds] - 2026-03-23T20:13:09.191Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-BKYRYAJC.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m66.90 kB[39m[2m | [22m
+[32mchunk-QHAC7A6R.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m30.52 kB[39m[2m | [22m
+[32mchunk-WQOUPDPI.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m18.01 kB[39m[2m | [22m
+[32mchunk-KIJ36WCI.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m6.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.189 seconds] - 2026-03-23T20:16:47.683Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.178 seconds] - 2026-03-23T20:22:49.181Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"requires-save"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:68:36:
+[37m      68 │       this.selectionCaptured.emit({ [32mkind[37m: 'requires-save' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:82:36:
+[37m      82 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:100:36:
+[37m      100 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"overlap"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:106:36:
+[37m      106 │       this.selectionCaptured.emit({ [32mkind[37m: 'overlap' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"selected"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:111:34:
+[37m      111 │ ...his.selectionCaptured.emit({ [32mkind[37m: 'selected', selection: norm...
+          ╵                                 [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+[39m[22m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.147 seconds] - 2026-03-23T20:23:10.582Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"requires-save"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:68:36:
+[37m      68 │       this.selectionCaptured.emit({ [32mkind[37m: 'requires-save' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:82:36:
+[37m      82 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:100:36:
+[37m      100 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"overlap"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:106:36:
+[37m      106 │       this.selectionCaptured.emit({ [32mkind[37m: 'overlap' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"selected"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:111:34:
+[37m      111 │ ...his.selectionCaptured.emit({ [32mkind[37m: 'selected', selection: norm...
+          ╵                                 [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+[39m[22m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.153 seconds] - 2026-03-23T20:23:14.054Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"requires-save"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:68:36:
+[37m      68 │       this.selectionCaptured.emit({ [32mkind[37m: 'requires-save' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:82:36:
+[37m      82 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+         ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"cleared"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:100:36:
+[37m      100 │       this.selectionCaptured.emit({ [32mkind[37m: 'cleared' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"overlap"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:106:36:
+[37m      106 │       this.selectionCaptured.emit({ [32mkind[37m: 'overlap' });
+          ╵                                     [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '"selected"' is not assignable to type 'SelectionCaptureKind'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/cms/components/annotation-panel/annotation-panel.ts:111:34:
+[37m      111 │ ...his.selectionCaptured.emit({ [32mkind[37m: 'selected', selection: norm...
+          ╵                                 [32m~~~~[0m
+
+  The expected type comes from property 'kind' which is declared here on type 'SelectionCaptureResult'
+
+    src/app/interfaces/selection-capture-result.interface.ts:5:6:
+[37m      5 │   | { [32mkind[37m: SelectionCaptureKind.Cleared }
+        ╵       [32m~~~~[0m
+
+[39m[22m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m  [36m3.17 kB[39m[2m | [22m
+[32mchunk-VUJOFXKG.js[39m  [2m | [22m[2m-[22m                  [2m | [22m[36m938 bytes[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m             [2m | [22m[36m237 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m      [2m | [22m  [1m4.34 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mchunk-LEOKIKHD.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m [36m67.47 kB[39m[2m | [22m
+[32mchunk-QHAC7A6R.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m [36m30.52 kB[39m[2m | [22m
+[32mchunk-WQOUPDPI.js[39m  [2m | [22m[2mshell[22m              [2m | [22m [36m18.01 kB[39m[2m | [22m
+[32mchunk-I7CZGU7P.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m7.29 kB[39m[2m | [22m
+[32mchunk-7BS3SSKS.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m  [36m6.96 kB[39m[2m | [22m
+[32mchunk-KIJ36WCI.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m6.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.182 seconds] - 2026-03-23T20:23:23.955Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-MQIHRBR5.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m67.47 kB[39m[2m | [22m
+[32mchunk-IEZYHOLJ.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m30.52 kB[39m[2m | [22m
+[32mchunk-K4GUNNG5.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m18.01 kB[39m[2m | [22m
+[32mchunk-H723L5R6.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m6.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.078 seconds] - 2026-03-23T20:23:30.037Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m [2m | [22m[1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m[2m | [22m [36m3.33 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.008 seconds] - 2026-03-23T20:23:58.532Z
+
+Stylesheet update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-XT34XDXL.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m[36m67.47 kB[39m[2m | [22m
+[32mchunk-PAODM4OG.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m[36m30.56 kB[39m[2m | [22m
+[32mchunk-NOXXFQMX.js[39m  [2m | [22m[2mshell[22m              [2m | [22m[36m17.68 kB[39m[2m | [22m
+[32mchunk-Q7ZTRBNP.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.50 kB[39m[2m | [22m
+[32mchunk-OZK2JQ3G.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m [36m7.10 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.190 seconds] - 2026-03-23T20:24:55.709Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-VGXN6JJT.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m67.60 kB[39m[2m | [22m
+[32mchunk-ZAHSAWHD.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m30.94 kB[39m[2m | [22m
+[32mchunk-NIE63CQ7.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m17.97 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.212 seconds] - 2026-03-23T20:25:39.639Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-WYXAOKBI.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m67.78 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.173 seconds] - 2026-03-23T20:27:30.527Z
+
+Component update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m [2m | [22m[1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m[2m | [22m [36m3.32 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.017 seconds] - 2026-03-23T20:27:52.366Z
+
+Stylesheet update sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m             [2m | [22m  [36m3.32 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m  [36m3.17 kB[39m[2m | [22m
+[32mchunk-VUJOFXKG.js[39m  [2m | [22m[2m-[22m                  [2m | [22m[36m938 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m      [2m | [22m  [1m7.42 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mchunk-WYXAOKBI.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m [36m67.78 kB[39m[2m | [22m
+[32mchunk-ZAHSAWHD.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m [36m30.94 kB[39m[2m | [22m
+[32mchunk-NIE63CQ7.js[39m  [2m | [22m[2mshell[22m              [2m | [22m [36m17.97 kB[39m[2m | [22m
+[32mchunk-Q7ZTRBNP.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m7.50 kB[39m[2m | [22m
+[32mchunk-OZK2JQ3G.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m  [36m7.10 kB[39m[2m | [22m
+[32mchunk-H723L5R6.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m6.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.087 seconds] - 2026-03-23T20:28:01.138Z
+

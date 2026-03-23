@@ -1,0 +1,123 @@
+:host {
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.sidebar {
+  padding: 28px;
+  border-right: 1px solid var(--color-line-base);
+  background: var(--color-surface-sidebar);
+  backdrop-filter: blur(18px);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--font-size-eyebrow);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.card,
+.primary-button {
+  border-radius: 16px;
+  border: 1px solid var(--color-transparent);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+  padding: 16px;
+  background: var(--color-surface-card);
+  border-color: var(--color-line-subtle);
+  text-align: left;
+}
+
+.card:hover,
+.primary-button:hover {
+  transform: translateY(-1px);
+}
+
+.card.active {
+  background: var(--color-text-primary);
+  color: var(--color-text-on-dark);
+  box-shadow: var(--shadow-card-active);
+}
+
+.article-title {
+  font-weight: 600;
+}
+
+.article-count {
+  font-size: var(--font-size-meta);
+  opacity: 0.8;
+}
+
+.primary-button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px 16px;
+  font-weight: 600;
+  background: var(--color-text-primary);
+  color: var(--color-text-on-dark);
+}
+
+.empty {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px dashed var(--color-line-dashed);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1120px) {
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-line-base);
+  }
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    padding: 18px;
+  }
+}

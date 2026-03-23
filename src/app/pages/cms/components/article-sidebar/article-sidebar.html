@@ -1,0 +1,31 @@
+<aside class="sidebar">
+  <div class="intro">
+    <p class="eyebrow">Test CMS</p>
+    <h1>Аннотации текста</h1>
+    <p class="muted">
+      Статьи и подсветки хранятся локально. Выберите существующую статью или создайте новую.
+    </p>
+  </div>
+
+  <button class="primary-button" type="button" (click)="newArticleRequested.emit()">
+    Новая статья
+  </button>
+
+  <div class="articles">
+    @for (article of articles(); track article.id) {
+      <button
+        class="card"
+        type="button"
+        [class.active]="article.id === selectedArticleId()"
+        (click)="articleSelected.emit(article.id)"
+      >
+        <span class="article-title">{{ article.title }}</span>
+        <span class="article-count">{{ annotationCounts()[article.id] }} аннотаций</span>
+      </button>
+    } @empty {
+      <div class="empty">
+        <p>Статей пока нет.</p>
+      </div>
+    }
+  </div>
+</aside>

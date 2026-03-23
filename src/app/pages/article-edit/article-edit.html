@@ -1,0 +1,25 @@
+@if (isMissingArticle()) {
+  <section class="empty-panel">
+    <p class="eyebrow">Ошибка</p>
+    <h2>Статья не найдена</h2>
+    <p class="muted">Выберите другую статью в боковом меню или создайте новую.</p>
+  </section>
+} @else {
+  <app-article-editor
+    [draft]="draft()"
+    [statusMessage]="statusMessage()"
+    [hasUnsavedContentChanges]="hasUnsavedContentChanges()"
+    (draftTitleChanged)="updateDraft('title', $event)"
+    (draftContentChanged)="updateDraft('content', $event)"
+    (articleSaved)="saveArticle()"
+    (articleDeleted)="deleteCurrentArticle()"
+  />
+
+  @if (deleteDialogMessage(); as message) {
+    <app-confirm-dialog
+      [message]="message"
+      (cancelled)="cancelDeleteArticle()"
+      (confirmed)="confirmDeleteArticle()"
+    />
+  }
+}

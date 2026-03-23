@@ -1,0 +1,13 @@
+<div class="shell">
+  <app-article-sidebar
+    [articles]="articles()"
+    [selectedArticleId]="selectedArticleId()"
+    [annotationCounts]="annotationCounts()"
+    (articleSelected)="openArticle($event)"
+    (newArticleRequested)="openArticleCreation()"
+  />
+
+  <main class="workspace">
+    <router-outlet />
+  </main>
+</div>

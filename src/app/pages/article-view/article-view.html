@@ -1,0 +1,55 @@
+@if (article()) {
+  <div class="view-layout">
+    <section class="toolbar">
+      <div>
+        <p class="eyebrow">Режим аннотаций</p>
+        <p class="muted">
+          Здесь статья открывается для просмотра. Для изменения текста перейдите в режим
+          редактирования.
+        </p>
+      </div>
+
+      <div class="article-actions">
+        <button class="ghost-button" type="button" (click)="editArticle()">Редактировать</button>
+        <button class="ghost-button danger-button" type="button" (click)="deleteArticle()">
+          Удалить
+        </button>
+      </div>
+    </section>
+
+    <div class="status-strip">
+      <span>{{ statusMessage() }}</span>
+    </div>
+
+    <app-annotation-panel
+      [draft]="draft()"
+      [canAnnotate]="!!article()"
+      [annotations]="annotations()"
+      [renderedSegments]="renderedSegments()"
+      [pendingSelection]="pendingSelection()"
+      [palette]="palette"
+      [annotationColor]="annotationColor()"
+      [annotationNote]="annotationNote()"
+      (selectionCaptured)="handleSelectionCaptured($event)"
+      (annotationColorChanged)="annotationColor.set($event)"
+      (annotationNoteChanged)="annotationNote.set($event)"
+      (annotationSaved)="saveAnnotation($event)"
+      (pendingSelectionCleared)="clearPendingSelection()"
+      (annotationRemoved)="removeAnnotation($event)"
+    />
+  </div>
+
+  @if (deleteDialogMessage(); as message) {
+    <app-confirm-dialog
+      [message]="message"
+      (cancelled)="cancelDeleteArticle()"
+      (confirmed)="confirmDeleteArticle()"
+    />
+  }
+} @else {
+  <section class="empty-panel">
+    <p class="eyebrow">Ошибка</p>
+    <h2>Статья не найдена</h2>
+    <p class="muted">Выберите другую статью в боковом меню или создайте новую.</p>
+  </section>
+}

@@ -1,0 +1,43 @@
+<section class="panel">
+  <div class="toolbar">
+    <div>
+      <p class="eyebrow">Редактор</p>
+      <h2>{{ draft().id ? 'Редактирование статьи' : 'Создание статьи' }}</h2>
+    </div>
+    <div class="editor-actions">
+      @if (draft().id) {
+        <button class="ghost-button danger-button" type="button" (click)="articleDeleted.emit()">
+          Удалить
+        </button>
+      }
+      <button class="primary-button" type="button" (click)="articleSaved.emit()">Сохранить</button>
+    </div>
+  </div>
+
+  <label class="field">
+    <span>Заголовок</span>
+    <input
+      type="text"
+      [ngModel]="draft().title"
+      (ngModelChange)="draftTitleChanged.emit($event)"
+      placeholder="Например, обзор протокола"
+    />
+  </label>
+
+  <label class="field">
+    <span>Текст статьи</span>
+    <textarea
+      [ngModel]="draft().content"
+      (ngModelChange)="draftContentChanged.emit($event)"
+      rows="14"
+      placeholder="Введите текст без форматирования"
+    ></textarea>
+  </label>
+
+  <div class="status-strip">
+    <span>{{ statusMessage() }}</span>
+    @if (hasUnsavedContentChanges()) {
+      <span class="badge">Есть несохраненные изменения</span>
+    }
+  </div>
+</section>

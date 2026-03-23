@@ -1,0 +1,128 @@
+<section class="panel">
+  <div class="toolbar">
+    <div>
+      <p class="eyebrow">Просмотр и аннотации</p>
+      <h2>{{ draft().title || 'Текст статьи' }}</h2>
+    </div>
+    <div class="panel-actions">
+      <span class="badge soft">{{ annotationsCount() }} аннотаций</span>
+    </div>
+  </div>
+
+  <div class="hint">
+    @if (canAnnotate()) {
+      <p>Выделите мышью фрагмент текста ниже, затем задайте цвет и описание.</p>
+    } @else {
+      <p>Для создания аннотаций сохраните текущую версию статьи без несохраненных изменений.</p>
+    }
+  </div>
+
+  <div #surfaceBox class="surface">
+    <div #previewText class="text" [class.disabled]="!canAnnotate()" (mouseup)="captureSelection()">
+      @for (segment of renderedSegments(); track $index) {
+        @if (segment.annotation; as annotation) {
+          <span
+            class="mark"
+            [style.--annotation-color]="annotation.color"
+            (mouseenter)="showTooltip($event, annotation)"
+            (mouseleave)="hideTooltip()"
+          >
+            {{ segment.text }}
+          </span>
+        } @else {
+          <span>{{ segment.text }}</span>
+        }
+      }
+    </div>
+
+    @if (tooltip(); as tooltipState) {
+      <div
+        #tooltipBox
+        class="tooltip"
+        [class.visible]="tooltipState.visible"
+        [style.left.px]="tooltipState.x"
+        [style.top.px]="tooltipState.y"
+      >
+        <p class="tooltip-comment">{{ tooltipState.annotation.note }}</p>
+        <p class="tooltip-fragment">«{{ tooltipState.annotation.text }}»</p>
+      </div>
+    }
+  </div>
+
+  <div class="annotation-form" [class.active]="!!pendingSelection()">
+    <div class="picked-fragment">
+      @if (pendingSelection(); as selection) {
+        <p class="eyebrow">Новый фрагмент</p>
+        <p>«{{ selection.text }}»</p>
+      } @else {
+        <p>Выделенный фрагмент появится здесь.</p>
+      }
+    </div>
+
+    <div class="annotation-fields">
+      <label class="field">
+        <span>Цвет</span>
+        <div class="palette">
+          @for (color of palette(); track color) {
+            <button
+              class="swatch"
+              type="button"
+              [class.active]="annotationColor() === color"
+              [style.background]="color"
+              (click)="annotationColorChanged.emit(color)"
+              [attr.aria-label]="'Выбрать цвет ' + color"
+            ></button>
+          }
+        </div>
+      </label>
+
+      <label class="field">
+        <span>Аннотация</span>
+        <textarea
+          rows="3"
+          [ngModel]="annotationNote()"
+          (ngModelChange)="annotationNoteChanged.emit($event)"
+          placeholder="Напишите пояснение"
+        ></textarea>
+      </label>
+
+      <div class="annotation-actions">
+        <button class="ghost-button" type="button" (click)="pendingSelectionCleared.emit()">
+          Сбросить
+        </button>
+        <button class="primary-button" type="button" (click)="saveAnnotation()">
+          Сохранить аннотацию
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <div class="annotations-title">
+      <h3>Список аннотаций</h3>
+    </div>
+
+    @for (annotation of annotations(); track annotation.id) {
+      <article class="annotation-card">
+        <div class="annotation-main">
+          <span class="chip" [style.background]="annotation.color"></span>
+          <div>
+            <p class="annotation-fragment">«{{ annotation.text }}»</p>
+            <p class="annotation-comment">{{ annotation.note }}</p>
+          </div>
+        </div>
+        <button
+          class="ghost-button danger-button"
+          type="button"
+          (click)="annotationRemoved.emit(annotation.id)"
+        >
+          Удалить
+        </button>
+      </article>
+    } @empty {
+      <div class="empty empty-center">
+        <p>Аннотаций пока нет.</p>
+      </div>
+    }
+  </div>
+</section>
