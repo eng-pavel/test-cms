@@ -82,7 +82,7 @@ describe('AnnotationPanel', () => {
     return fixture;
   }
 
-  it('emits the saved annotation payload', () => {
+  it('эмитит сохранённые данные аннотации', () => {
     const selection: PendingSelection = {
       start: 2,
       end: 7,
@@ -106,7 +106,7 @@ describe('AnnotationPanel', () => {
     });
   });
 
-  it('emits a special result when annotations are disabled', () => {
+  it('эмитит специальный результат, когда аннотации недоступны', () => {
     const fixture = createComponent({ canAnnotate: false });
     const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
     const emitSpy = jest.spyOn(component.selectionCaptured, 'emit');
@@ -118,7 +118,7 @@ describe('AnnotationPanel', () => {
     });
   });
 
-  it('normalizes selection by trimming surrounding spaces', () => {
+  it('нормализует выделение, обрезая пробелы по краям', () => {
     const fixture = createComponent();
     const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
 
@@ -129,7 +129,7 @@ describe('AnnotationPanel', () => {
     });
   });
 
-  it('detects selection overlap with existing annotations', () => {
+  it('определяет пересечение выделения с существующими аннотациями', () => {
     const fixture = createComponent();
     const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
 
@@ -137,7 +137,7 @@ describe('AnnotationPanel', () => {
     expect(component.hasOverlappingAnnotation(8, 10)).toBe(false);
   });
 
-  it('moves the tooltip to the left and keeps it inside the surface bounds', () => {
+  it('сдвигает tooltip влево и удерживает его в границах поверхности', () => {
     const fixture = createComponent();
     const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
     const anchorRect = new DOMRect(220, 210, 40, 20);

@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
@@ -8,11 +9,18 @@ import type { SelectionCaptureResult } from '../../interfaces/selection-capture-
 import { StorageService } from '../../services/storage.service';
 import { ArticleView } from './article-view';
 
+const ARTICLE_ID_1 = '11111111-1111-4111-8111-111111111111';
+const ARTICLE_ID_2 = '22222222-2222-4222-8222-222222222222';
+const ANNOTATION_ID_1 = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+
 class ActivatedRouteStub {
   private readonly paramMapSubject = new BehaviorSubject(convertToParamMap({}));
 
-  readonly paramMap = this.paramMapSubject.asObservable();
   snapshot = { paramMap: convertToParamMap({}) };
+
+  get paramMap(): Observable<ReturnType<typeof convertToParamMap>> {
+    return this.paramMapSubject.asObservable();
+  }
 
   setParamMap(articleId: string | null): void {
     const paramMap = convertToParamMap(articleId ? { articleId } : {});
@@ -72,8 +80,8 @@ describe('ArticleView', () => {
     localStorage.clear();
   });
 
-  it('selects the article from the route on init', () => {
-    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue('article-1');
+  it('выбирает статью из маршрута при инициализации', () => {
+    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
 
     const article = storage.createArticle({
       title: 'Статья',
@@ -90,8 +98,8 @@ describe('ArticleView', () => {
     expect(component.statusMessage()).toContain(article.title);
   });
 
-  it('navigates to edit mode for the current article', () => {
-    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue('article-1');
+  it('переходит в режим редактирования текущей статьи', () => {
+    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
 
     const article = storage.createArticle({
       title: 'Статья',
@@ -108,11 +116,11 @@ describe('ArticleView', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/articles', article.id, 'edit']);
   });
 
-  it('creates an annotation from the selected fragment and clears the draft', () => {
+  it('создаёт аннотацию из выбранного фрагмента и очищает черновик', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const article = storage.createArticle({
       title: 'Статья',
@@ -145,11 +153,11 @@ describe('ArticleView', () => {
     expect(component.statusMessage()).toBe('Аннотация сохранена.');
   });
 
-  it('deletes an annotation and updates the status message', () => {
+  it('удаляет аннотацию и обновляет статусное сообщение', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const article = storage.createArticle({
       title: 'Статья',
@@ -175,11 +183,11 @@ describe('ArticleView', () => {
     expect(component.statusMessage()).toBe('Аннотация удалена.');
   });
 
-  it('deletes the current article after confirmation and opens the next one', () => {
+  it('удаляет текущую статью после подтверждения и открывает следующую', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('article-2');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ARTICLE_ID_2);
 
     const firstArticle = storage.createArticle({
       title: 'Первая статья',

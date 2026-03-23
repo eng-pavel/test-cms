@@ -1,16 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 import type { ArticleDraft } from '../../interfaces/article.interface';
 import { StorageService } from '../../services/storage.service';
 import { ArticleEdit } from './article-edit';
 
+const ARTICLE_ID_1 = '11111111-1111-4111-8111-111111111111';
+const ARTICLE_ID_2 = '22222222-2222-4222-8222-222222222222';
+const ANNOTATION_ID_1 = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+
 class ActivatedRouteStub {
   private readonly paramMapSubject = new BehaviorSubject(convertToParamMap({}));
 
-  readonly paramMap = this.paramMapSubject.asObservable();
   snapshot = { paramMap: convertToParamMap({}) };
+
+  get paramMap(): Observable<ReturnType<typeof convertToParamMap>> {
+    return this.paramMapSubject.asObservable();
+  }
 
   setParamMap(articleId: string | null): void {
     const paramMap = convertToParamMap(articleId ? { articleId } : {});
@@ -62,8 +70,8 @@ describe('ArticleEdit', () => {
     localStorage.clear();
   });
 
-  it('creates a new article and navigates to its page', () => {
-    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue('article-1');
+  it('создаёт новую статью и переходит на её страницу', () => {
+    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
     route.setParamMap(null);
 
     const fixture = TestBed.createComponent(ArticleEdit);
@@ -74,15 +82,15 @@ describe('ArticleEdit', () => {
     component.updateDraft('content', 'Текст статьи');
     component.saveArticle();
 
-    expect(storage.articleById('article-1')?.title).toBe('Новая статья');
-    expect(router.navigate).toHaveBeenCalledWith(['/articles', 'article-1']);
+    expect(storage.articleById(ARTICLE_ID_1)?.title).toBe('Новая статья');
+    expect(router.navigate).toHaveBeenCalledWith(['/articles', ARTICLE_ID_1]);
   });
 
-  it('saves title changes without resetting annotations', () => {
+  it('сохраняет изменение заголовка без сброса аннотаций', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const article = storage.createArticle({
       title: 'Исходный заголовок',
@@ -112,11 +120,11 @@ describe('ArticleEdit', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/articles', article.id]);
   });
 
-  it('asks for confirmation before resetting annotations on content change', () => {
+  it('запрашивает подтверждение перед сбросом аннотаций при изменении текста', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const article = storage.createArticle({
       title: 'Статья',
@@ -150,11 +158,11 @@ describe('ArticleEdit', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/articles', article.id]);
   });
 
-  it('deletes the current article after confirmation and navigates to the next one', () => {
+  it('удаляет текущую статью после подтверждения и переходит к следующей', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('article-2');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ARTICLE_ID_2);
 
     const firstArticle = storage.createArticle({
       title: 'Первая статья',

@@ -1,5 +1,9 @@
 import { StorageService } from './storage.service';
 
+const ARTICLE_ID_1 = '11111111-1111-4111-8111-111111111111';
+const ARTICLE_ID_2 = '22222222-2222-4222-8222-222222222222';
+const ANNOTATION_ID_1 = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+
 describe('StorageService', () => {
   beforeEach(() => {
     localStorage.clear();
@@ -13,8 +17,8 @@ describe('StorageService', () => {
     localStorage.clear();
   });
 
-  it('creates an article, persists it and selects it', () => {
-    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue('article-1');
+  it('создаёт статью, сохраняет её и делает выбранной', () => {
+    jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
 
     const service = new StorageService();
     const article = service.createArticle({
@@ -22,20 +26,20 @@ describe('StorageService', () => {
       content: 'Текст статьи',
     });
 
-    expect(article.id).toBe('article-1');
+    expect(article.id).toBe(ARTICLE_ID_1);
     expect(service.articles()).toHaveLength(1);
-    expect(service.selectedArticleId()).toBe('article-1');
+    expect(service.selectedArticleId()).toBe(ARTICLE_ID_1);
     expect(JSON.parse(localStorage.getItem('test-cms.articles') ?? '[]')).toHaveLength(1);
     expect(JSON.parse(localStorage.getItem('test-cms.selected-article-id') ?? 'null')).toBe(
-      'article-1',
+      ARTICLE_ID_1,
     );
   });
 
-  it('keeps annotations when only the title changes', () => {
+  it('сохраняет аннотации при изменении только заголовка', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const service = new StorageService();
     const article = service.createArticle({
@@ -61,11 +65,11 @@ describe('StorageService', () => {
     expect(service.annotationsForArticle(article.id)).toHaveLength(1);
   });
 
-  it('clears annotations when article content changes', () => {
+  it('сбрасывает аннотации при изменении текста статьи', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const service = new StorageService();
     const article = service.createArticle({
@@ -91,11 +95,11 @@ describe('StorageService', () => {
     expect(service.annotationsForArticle(article.id)).toHaveLength(0);
   });
 
-  it('creates and deletes an annotation', () => {
+  it('создаёт и удаляет аннотацию', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('annotation-1');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ANNOTATION_ID_1);
 
     const service = new StorageService();
     const article = service.createArticle({
@@ -119,11 +123,11 @@ describe('StorageService', () => {
     expect(service.annotationsForArticle(article.id)).toHaveLength(0);
   });
 
-  it('deletes an article and switches selection to the next available article', () => {
+  it('удаляет статью и переключает выбор на следующую доступную', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
-      .mockReturnValueOnce('article-1')
-      .mockReturnValueOnce('article-2');
+      .mockReturnValueOnce(ARTICLE_ID_1)
+      .mockReturnValueOnce(ARTICLE_ID_2);
 
     const service = new StorageService();
     const firstArticle = service.createArticle({
@@ -143,7 +147,7 @@ describe('StorageService', () => {
     expect(service.selectedArticleId()).toBe(firstArticle.id);
   });
 
-  it('returns fallback values for broken localStorage data', () => {
+  it('возвращает fallback-значения для битых данных в localStorage', () => {
     localStorage.setItem('test-cms.articles', '{broken json');
     localStorage.setItem('test-cms.annotations', '{broken json');
     localStorage.setItem('test-cms.selected-article-id', '{broken json');
