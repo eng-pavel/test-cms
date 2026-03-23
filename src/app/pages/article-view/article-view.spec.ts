@@ -1,11 +1,15 @@
+import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import type { ParamMap } from '@angular/router';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
+import { AnnotationPanel } from '../../components/annotation-panel/annotation-panel';
+import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
 import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
 import type { PendingSelection } from '../../interfaces/pending-selection.interface';
-import type { SelectionCaptureResult } from '../../interfaces/selection-capture-result.interface';
 import { StorageService } from '../../services/storage.service';
 import { ArticleView } from './article-view';
 
@@ -13,52 +17,39 @@ const ARTICLE_ID_1 = '11111111-1111-4111-8111-111111111111';
 const ARTICLE_ID_2 = '22222222-2222-4222-8222-222222222222';
 const ANNOTATION_ID_1 = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
 
-class ActivatedRouteStub {
-  private readonly paramMapSubject = new BehaviorSubject(convertToParamMap({}));
+function createActivatedRouteStub(): {
+  readonly paramMap: Observable<ParamMap>;
+  readonly snapshot: { paramMap: ParamMap };
+  setParamMap(articleId: string | null): void;
+} {
+  const paramMapSubject = new BehaviorSubject(convertToParamMap({}));
+  let snapshot = { paramMap: convertToParamMap({}) };
 
-  snapshot = { paramMap: convertToParamMap({}) };
+  return {
+    get paramMap(): Observable<ParamMap> {
+      return paramMapSubject.asObservable();
+    },
+    get snapshot(): { paramMap: ParamMap } {
+      return snapshot;
+    },
+    setParamMap(articleId: string | null): void {
+      const paramMap = convertToParamMap(articleId ? { articleId } : {});
 
-  get paramMap(): Observable<ReturnType<typeof convertToParamMap>> {
-    return this.paramMapSubject.asObservable();
-  }
-
-  setParamMap(articleId: string | null): void {
-    const paramMap = convertToParamMap(articleId ? { articleId } : {});
-
-    this.snapshot = { paramMap };
-    this.paramMapSubject.next(paramMap);
-  }
-}
-
-interface AnnotationDraftPayload {
-  color: string;
-  note: string;
-  selection: PendingSelection;
-}
-
-interface ArticleViewAccess {
-  annotations(): { id: string }[];
-  clearPendingSelection(): void;
-  confirmDeleteArticle(): void;
-  deleteArticle(): void;
-  deleteDialogMessage(): string | null;
-  editArticle(): void;
-  handleSelectionCaptured(result: SelectionCaptureResult): void;
-  pendingSelection(): PendingSelection | null;
-  removeAnnotation(annotationId: string): void;
-  saveAnnotation(payload: AnnotationDraftPayload): void;
-  statusMessage(): string;
+      snapshot = { paramMap };
+      paramMapSubject.next(paramMap);
+    },
+  };
 }
 
 describe('ArticleView', () => {
-  let route: ActivatedRouteStub;
+  let route: ReturnType<typeof createActivatedRouteStub>;
   let router: { navigate: jest.Mock<Promise<boolean>, [unknown[]]> };
   let storage: StorageService;
 
   beforeEach(async () => {
     localStorage.clear();
     jest.restoreAllMocks();
-    route = new ActivatedRouteStub();
+    route = createActivatedRouteStub();
     router = {
       navigate: jest.fn().mockResolvedValue(true),
     };
@@ -80,7 +71,19 @@ describe('ArticleView', () => {
     localStorage.clear();
   });
 
-  it('выбирает статью из маршрута при инициализации', () => {
+  function getAnnotationPanel(fixture: ComponentFixture<ArticleView>): AnnotationPanel {
+    return fixture.debugElement.query(By.directive(AnnotationPanel)).componentInstance;
+  }
+
+  function getConfirmDialog(fixture: ComponentFixture<ArticleView>): ConfirmDialog | null {
+    return fixture.debugElement.query(By.directive(ConfirmDialog))?.componentInstance ?? null;
+  }
+
+  function getStatusMessage(fixture: ComponentFixture<ArticleView>): string {
+    return fixture.nativeElement.querySelector('.status-strip span')?.textContent?.trim() ?? '';
+  }
+
+  it('должен выбирать статью из маршрута при инициализации', () => {
     jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
 
     const article = storage.createArticle({
@@ -90,15 +93,14 @@ describe('ArticleView', () => {
     route.setParamMap(article.id);
 
     const fixture = TestBed.createComponent(ArticleView);
-    const component = fixture.componentInstance as unknown as ArticleViewAccess;
 
     fixture.detectChanges();
 
     expect(storage.selectedArticleId()).toBe(article.id);
-    expect(component.statusMessage()).toContain(article.title);
+    expect(getStatusMessage(fixture)).toContain(article.title);
   });
 
-  it('переходит в режим редактирования текущей статьи', () => {
+  it('должен переходить в режим редактирования текущей статьи', () => {
     jest.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(ARTICLE_ID_1);
 
     const article = storage.createArticle({
@@ -108,15 +110,14 @@ describe('ArticleView', () => {
     route.setParamMap(article.id);
 
     const fixture = TestBed.createComponent(ArticleView);
-    const component = fixture.componentInstance as unknown as ArticleViewAccess;
 
     fixture.detectChanges();
-    component.editArticle();
+    fixture.nativeElement.querySelector('.article-actions button')?.click();
 
     expect(router.navigate).toHaveBeenCalledWith(['/articles', article.id, 'edit']);
   });
 
-  it('создаёт аннотацию из выбранного фрагмента и очищает черновик', () => {
+  it('должен создавать аннотацию из выбранного фрагмента и очищать черновик', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
       .mockReturnValueOnce(ARTICLE_ID_1)
@@ -129,7 +130,6 @@ describe('ArticleView', () => {
     route.setParamMap(article.id);
 
     const fixture = TestBed.createComponent(ArticleView);
-    const component = fixture.componentInstance as unknown as ArticleViewAccess;
     const selection: PendingSelection = {
       start: 0,
       end: 5,
@@ -137,23 +137,26 @@ describe('ArticleView', () => {
     };
 
     fixture.detectChanges();
-    component.handleSelectionCaptured({
+
+    const panel = getAnnotationPanel(fixture);
+
+    panel.selectionCaptured.emit({
       kind: SelectionCaptureKind.Selected,
       selection,
     });
-    component.saveAnnotation({
+    panel.annotationSaved.emit({
       selection,
       color: '#111111',
       note: '  Комментарий  ',
     });
+    fixture.detectChanges();
 
     expect(storage.annotationsForArticle(article.id)).toHaveLength(1);
     expect(storage.annotationsForArticle(article.id)[0]?.note).toBe('Комментарий');
-    expect(component.pendingSelection()).toBeNull();
-    expect(component.statusMessage()).toBe('Аннотация сохранена.');
+    expect(getStatusMessage(fixture)).toBe('Аннотация сохранена.');
   });
 
-  it('удаляет аннотацию и обновляет статусное сообщение', () => {
+  it('должен удалять аннотацию и обновлять статусное сообщение', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
       .mockReturnValueOnce(ARTICLE_ID_1)
@@ -174,16 +177,19 @@ describe('ArticleView', () => {
     route.setParamMap(article.id);
 
     const fixture = TestBed.createComponent(ArticleView);
-    const component = fixture.componentInstance as unknown as ArticleViewAccess;
 
     fixture.detectChanges();
-    component.removeAnnotation(annotation.id);
+
+    const panel = getAnnotationPanel(fixture);
+
+    panel.annotationRemoved.emit(annotation.id);
+    fixture.detectChanges();
 
     expect(storage.annotationsForArticle(article.id)).toHaveLength(0);
-    expect(component.statusMessage()).toBe('Аннотация удалена.');
+    expect(getStatusMessage(fixture)).toBe('Аннотация удалена.');
   });
 
-  it('удаляет текущую статью после подтверждения и открывает следующую', () => {
+  it('должен удалять текущую статью после подтверждения и открывать следующую', () => {
     jest
       .spyOn(globalThis.crypto, 'randomUUID')
       .mockReturnValueOnce(ARTICLE_ID_1)
@@ -200,14 +206,16 @@ describe('ArticleView', () => {
     route.setParamMap(secondArticle.id);
 
     const fixture = TestBed.createComponent(ArticleView);
-    const component = fixture.componentInstance as unknown as ArticleViewAccess;
 
     fixture.detectChanges();
-    component.deleteArticle();
+    fixture.nativeElement.querySelector('.danger-button')?.click();
+    fixture.detectChanges();
 
-    expect(component.deleteDialogMessage()).toContain(secondArticle.title);
+    const dialog = getConfirmDialog(fixture);
 
-    component.confirmDeleteArticle();
+    expect(dialog?.message()).toContain(secondArticle.title);
+
+    dialog?.confirmed.emit();
 
     expect(storage.articleById(secondArticle.id)).toBeNull();
     expect(router.navigate).toHaveBeenCalledWith(['/articles', firstArticle.id]);

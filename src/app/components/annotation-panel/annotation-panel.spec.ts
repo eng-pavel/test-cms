@@ -1,3 +1,4 @@
+import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
@@ -6,22 +7,6 @@ import type { ArticleDraft } from '../../interfaces/article.interface';
 import type { PendingSelection } from '../../interfaces/pending-selection.interface';
 import type { TextSegment } from '../../interfaces/text-segment.interface';
 import { AnnotationPanel } from './annotation-panel';
-
-interface AnnotationPanelAccess {
-  annotationSaved: { emit(payload: unknown): void };
-  captureSelection(): void;
-  getTooltipPosition(
-    anchorRect: DOMRect,
-    surfaceRect: DOMRect,
-    tooltipWidth: number,
-    tooltipHeight: number,
-  ): { x: number; y: number };
-  hasOverlappingAnnotation(start: number, end: number): boolean;
-  normalizeSelection(content: string, start: number, end: number): PendingSelection | null;
-  noteControl: { setValue(value: string): void; value: string };
-  saveAnnotation(): void;
-  selectionCaptured: { emit(payload: unknown): void };
-}
 
 describe('AnnotationPanel', () => {
   const draft: ArticleDraft = {
@@ -82,7 +67,11 @@ describe('AnnotationPanel', () => {
     return fixture;
   }
 
-  it('эмитит сохранённые данные аннотации', () => {
+  function getComponent(fixture: ComponentFixture<AnnotationPanel>): AnnotationPanel {
+    return fixture.componentInstance;
+  }
+
+  it('должен эмитить сохранённые данные аннотации', () => {
     const selection: PendingSelection = {
       start: 2,
       end: 7,
@@ -93,11 +82,11 @@ describe('AnnotationPanel', () => {
       annotationColor: '#222222',
       annotationNote: 'Исходный комментарий',
     });
-    const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
+    const component = getComponent(fixture);
     const emitSpy = jest.spyOn(component.annotationSaved, 'emit');
 
-    component.noteControl.setValue('Новый комментарий');
-    component.saveAnnotation();
+    component['noteControl'].setValue('Новый комментарий');
+    component['saveAnnotation']();
 
     expect(emitSpy).toHaveBeenCalledWith({
       selection,
@@ -106,44 +95,44 @@ describe('AnnotationPanel', () => {
     });
   });
 
-  it('эмитит специальный результат, когда аннотации недоступны', () => {
+  it('должен эмитить специальный результат, когда аннотации недоступны', () => {
     const fixture = createComponent({ canAnnotate: false });
-    const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
+    const component = getComponent(fixture);
     const emitSpy = jest.spyOn(component.selectionCaptured, 'emit');
 
-    component.captureSelection();
+    component['captureSelection']();
 
     expect(emitSpy).toHaveBeenCalledWith({
       kind: SelectionCaptureKind.RequiresSave,
     });
   });
 
-  it('нормализует выделение, обрезая пробелы по краям', () => {
+  it('должен нормализовать выделение, обрезая пробелы по краям', () => {
     const fixture = createComponent();
-    const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
+    const component = getComponent(fixture);
 
-    expect(component.normalizeSelection('  Текст статьи  ', 0, 9)).toEqual({
+    expect(component['normalizeSelection']('  Текст статьи  ', 0, 9)).toEqual({
       start: 2,
       end: 9,
       text: 'Текст с',
     });
   });
 
-  it('определяет пересечение выделения с существующими аннотациями', () => {
+  it('должен определять пересечение выделения с существующими аннотациями', () => {
     const fixture = createComponent();
-    const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
+    const component = getComponent(fixture);
 
-    expect(component.hasOverlappingAnnotation(4, 8)).toBe(true);
-    expect(component.hasOverlappingAnnotation(8, 10)).toBe(false);
+    expect(component['hasOverlappingAnnotation'](4, 8)).toBe(true);
+    expect(component['hasOverlappingAnnotation'](8, 10)).toBe(false);
   });
 
-  it('сдвигает tooltip влево и удерживает его в границах поверхности', () => {
+  it('должен сдвигать tooltip влево и удерживать его в границах поверхности', () => {
     const fixture = createComponent();
-    const component = fixture.componentInstance as unknown as AnnotationPanelAccess;
+    const component = getComponent(fixture);
     const anchorRect = new DOMRect(220, 210, 40, 20);
     const surfaceRect = new DOMRect(100, 100, 180, 120);
 
-    expect(component.getTooltipPosition(anchorRect, surfaceRect, 100, 90)).toEqual({
+    expect(component['getTooltipPosition'](anchorRect, surfaceRect, 100, 90)).toEqual({
       x: 14,
       y: 22,
     });
