@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import type { ArticleDraft } from '../../../../interfaces/article.interface';
+import type { ArticleDraft } from '../../interfaces/article.interface';
 
+/**
+ * Отобразить форму создания и редактирования черновика статьи.
+ */
 @Component({
   selector: 'app-article-editor',
   standalone: true,

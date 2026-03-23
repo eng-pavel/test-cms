@@ -58,13 +58,14 @@ module.exports = defineConfig([
       'unused-imports/no-unused-imports': 'error',
 
       '@typescript-eslint/no-unused-vars': [
-        'warn',
+        'error',
         {
           varsIgnorePattern: '^_',
           argsIgnorePattern: '^_',
           caughtErrorsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-unused-private-class-members': 'error',
 
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',

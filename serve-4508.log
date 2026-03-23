@@ -545,3 +545,264 @@ Stylesheet update sent to client(s).
 
 Application bundle generation complete. [0.087 seconds] - 2026-03-23T20:28:01.137Z
 
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-JVULMKRU.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m67.78 kB[39m[2m | [22m
+[32mchunk-5FJNVKZZ.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m30.94 kB[39m[2m | [22m
+[32mchunk-TOI7ZF2Q.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m17.97 kB[39m[2m | [22m
+[32mchunk-3J4INEVP.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m5.94 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.120 seconds] - 2026-03-23T20:38:48.561Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.479 seconds] - 2026-03-23T20:42:30.879Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../enums/selection-capture-kind.enum' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:13:37:
+[37m      13 │ ...aptureKind } from [32m'../../../../enums/selection-capture-kind.enum'[37m;
+         ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/annotation.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:14:32:
+[37m      14 │ ...{ Annotation } from [32m'../../../../interfaces/annotation.interface'[37m;
+         ╵                        [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/article.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:15:34:
+[37m      15 │ ... { ArticleDraft } from [32m'../../../../interfaces/article.interface'[37m;
+         ╵                           [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/pending-selection.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:16:38:
+[37m      16 │ ...ction } from [32m'../../../../interfaces/pending-selection.interface'[37m;
+         ╵                 [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/selection-capture-result.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:17:44:
+[37m      17 │ ...lt } from [32m'../../../../interfaces/selection-capture-result.inte[37m...
+         ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/text-segment.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/annotation-panel/annotation-panel.ts:18:33:
+[37m      18 │ ...extSegment } from [32m'../../../../interfaces/text-segment.interface'[37m;
+         ╵                      [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/article.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/article-editor/article-editor.ts:4:34:
+[37m      4 │ ...e { ArticleDraft } from [32m'../../../../interfaces/article.interface'[37m;
+        ╵                            [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../../../../interfaces/article.interface' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/components/article-sidebar/article-sidebar.ts:3:29:
+[37m      3 │ ...t type { Article } from [32m'../../../../interfaces/article.interface'[37m;
+        ╵                            [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../cms/components/article-editor/article-editor' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/article-edit/article-edit.ts:16:30:
+[37m      16 │ ...leEditor } from [32m'../cms/components/article-editor/article-editor'[37m;
+         ╵                    [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/article-edit/article-edit.ts:21:12:
+[37m      21 │   imports: [[32mArticleEditor[37m, ConfirmDialog],
+         ╵             [32m~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/article-edit/article-edit.ts:21:12:
+[37m      21 │   imports: [[32mArticleEditor[37m, ConfirmDialog],
+         ╵             [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../cms/components/annotation-panel/annotation-panel' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/article-view/article-view.ts:20:32:
+[37m      20 │ ...anel } from [32m'../cms/components/annotation-panel/annotation-panel'[37m;
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/article-view/article-view.ts:31:12:
+[37m      31 │   imports: [[32mAnnotationPanel[37m, ConfirmDialog],
+         ╵             [32m~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/article-view/article-view.ts:31:12:
+[37m      31 │   imports: [[32mAnnotationPanel[37m, ConfirmDialog],
+         ╵             [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../cms/components/article-sidebar/article-sidebar' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/shell/shell.ts:5:31:
+[37m      5 │ ...Sidebar } from [32m'../cms/components/article-sidebar/article-sidebar'[37m;
+        ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/shell/shell.ts:10:12:
+[37m      10 │   imports: [[32mArticleSidebar[37m, RouterOutlet],
+         ╵             [32m~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/shell/shell.ts:10:12:
+[37m      10 │   imports: [[32mArticleSidebar[37m, RouterOutlet],
+         ╵             [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../cms/components/article-editor/article-editor"[0m
+
+    src/app/pages/article-edit/article-edit.ts:8:30:
+[37m      8 │ ...cleEditor } from [32m'../cms/components/article-editor/article-editor'[37m;
+        ╵                     [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../cms/components/annotation-panel/annotation-panel"[0m
+
+    src/app/pages/article-view/article-view.ts:9:32:
+[37m      9 │ ...Panel } from [32m'../cms/components/annotation-panel/annotation-panel'[37m;
+        ╵                 [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../cms/components/article-sidebar/article-sidebar"[0m
+
+    src/app/pages/shell/shell.ts:5:31:
+[37m      5 │ ...Sidebar } from [32m'../cms/components/article-sidebar/article-sidebar'[37m;
+        ╵                   [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m             [2m | [22m  [36m3.32 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m  [36m3.17 kB[39m[2m | [22m
+[32mchunk-VUJOFXKG.js[39m  [2m | [22m[2m-[22m                  [2m | [22m[36m938 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m      [2m | [22m  [1m7.42 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mchunk-ETVH2CAP.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m [36m69.04 kB[39m[2m | [22m
+[32mchunk-V2G3HLBW.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m [36m31.32 kB[39m[2m | [22m
+[32mchunk-5KMXRHHO.js[39m  [2m | [22m[2mshell[22m              [2m | [22m [36m18.06 kB[39m[2m | [22m
+[32mchunk-OCAUENEZ.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m7.50 kB[39m[2m | [22m
+[32mchunk-3KNF2ISP.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m  [36m7.16 kB[39m[2m | [22m
+[32mchunk-JXBCOHWF.js[39m  [2m | [22m[2m-[22m                  [2m | [22m  [36m7.05 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.494 seconds] - 2026-03-23T20:45:01.861Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-OXRE2KGA.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m[36m70.00 kB[39m[2m | [22m
+[32mchunk-CCGETNTU.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m[36m31.63 kB[39m[2m | [22m
+[32mchunk-3Z5NGNVV.js[39m  [2m | [22m[2mshell[22m              [2m | [22m[36m18.16 kB[39m[2m | [22m
+[32mchunk-6NNDX5YP.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.75 kB[39m[2m | [22m
+[32mchunk-EFD77QGU.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.50 kB[39m[2m | [22m
+[32mchunk-NITR7OQ2.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m [36m7.19 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.348 seconds] - 2026-03-23T20:48:25.978Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+
+No output file changes.
+
+Application bundle generation complete. [0.189 seconds] - 2026-03-23T20:49:04.536Z
+
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-PPLDXJBX.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m[36m70.13 kB[39m[2m | [22m
+[32mchunk-PXAPBJ5S.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m[36m31.68 kB[39m[2m | [22m
+[32mchunk-NDWT54ZN.js[39m  [2m | [22m[2mshell[22m              [2m | [22m[36m18.17 kB[39m[2m | [22m
+[32mchunk-NGJJ7HQJ.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.88 kB[39m[2m | [22m
+[32mchunk-BOD4YITU.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.50 kB[39m[2m | [22m
+[32mchunk-OSCGQHYA.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m [36m7.20 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.254 seconds] - 2026-03-23T20:50:38.425Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m               [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m[1mRaw size[22m
+[32mchunk-HWTPFEBV.js[39m  [2m | [22m[2marticle-view[22m       [2m | [22m[36m70.10 kB[39m[2m | [22m
+[32mchunk-PYWWKDLL.js[39m  [2m | [22m[2marticle-edit[22m       [2m | [22m[36m31.66 kB[39m[2m | [22m
+[32mchunk-OO7AH4SC.js[39m  [2m | [22m[2mshell[22m              [2m | [22m[36m18.16 kB[39m[2m | [22m
+[32mchunk-5QJBQK2U.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.88 kB[39m[2m | [22m
+[32mchunk-NVX3FXDQ.js[39m  [2m | [22m[2m-[22m                  [2m | [22m [36m7.50 kB[39m[2m | [22m
+[32mchunk-QN2JW25C.js[39m  [2m | [22m[2marticle-placeholder[22m[2m | [22m [36m7.20 kB[39m[2m | [22m
+
+Application bundle generation complete. [2.591 seconds] - 2026-03-23T20:52:30.944Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-IQE2CBVI.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m71.73 kB[39m[2m | [22m
+[32mchunk-OGHX2Y6T.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m31.84 kB[39m[2m | [22m
+[32mchunk-SUEX7YFZ.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m18.27 kB[39m[2m | [22m
+[32mchunk-ZUIVBJDM.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m8.96 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.664 seconds] - 2026-03-23T20:54:00.849Z
+
+Page reload sent to client(s).
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m        [2m | [22m [36m3.17 kB[39m[2m | [22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m       [2m | [22m[1mRaw size[22m
+[32mchunk-XIOHQCVC.js[39m  [2m | [22m[2marticle-view[22m[2m | [22m[36m71.67 kB[39m[2m | [22m
+[32mchunk-TJELCVKW.js[39m  [2m | [22m[2marticle-edit[22m[2m | [22m[36m31.84 kB[39m[2m | [22m
+[32mchunk-DW2SRUVF.js[39m  [2m | [22m[2mshell[22m       [2m | [22m[36m18.27 kB[39m[2m | [22m
+[32mchunk-B6BLTMPB.js[39m  [2m | [22m[2m-[22m           [2m | [22m [36m8.91 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.290 seconds] - 2026-03-23T20:54:56.282Z
+
+Page reload sent to client(s).

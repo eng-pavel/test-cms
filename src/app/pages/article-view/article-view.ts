@@ -10,6 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 
+import { AnnotationPanel } from '../../components/annotation-panel/annotation-panel';
 import { ConfirmDialog } from '../../components/confirm-dialog/confirm-dialog';
 import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
 import type { ArticleDraft } from '../../interfaces/article.interface';
@@ -17,7 +18,6 @@ import type { PendingSelection } from '../../interfaces/pending-selection.interf
 import type { SelectionCaptureResult } from '../../interfaces/selection-capture-result.interface';
 import type { TextSegment } from '../../interfaces/text-segment.interface';
 import { StorageService } from '../../services/storage.service';
-import { AnnotationPanel } from '../cms/components/annotation-panel/annotation-panel';
 
 interface AnnotationDraftPayload {
   color: string;
@@ -25,6 +25,9 @@ interface AnnotationDraftPayload {
   selection: PendingSelection;
 }
 
+/**
+ * Показать страницу просмотра статьи с созданием и удалением аннотаций.
+ */
 @Component({
   selector: 'app-article-view',
   standalone: true,
@@ -99,6 +102,9 @@ export class ArticleView {
     return segments;
   });
 
+  /**
+   * Синхронизировать выбранную статью с маршрутом и сообщениями страницы.
+   */
   constructor() {
     effect(() => {
       const article = this.article();
@@ -116,6 +122,9 @@ export class ArticleView {
     });
   }
 
+  /**
+   * Открыть страницу редактирования текущей статьи.
+   */
   protected editArticle(): void {
     const article = this.article();
 
@@ -126,6 +135,9 @@ export class ArticleView {
     void this.router.navigate(['/articles', article.id, 'edit']);
   }
 
+  /**
+   * Открыть подтверждение удаления текущей статьи.
+   */
   protected deleteArticle(): void {
     const article = this.article();
 
@@ -136,10 +148,16 @@ export class ArticleView {
     this.deleteDialogMessage.set(`Вы действительно хотите удалить "${article.title}"?`);
   }
 
+  /**
+   * Закрыть диалог подтверждения удаления статьи.
+   */
   protected cancelDeleteArticle(): void {
     this.deleteDialogMessage.set(null);
   }
 
+  /**
+   * Удалить текущую статью и перейти на следующую доступную страницу.
+   */
   protected confirmDeleteArticle(): void {
     const article = this.article();
 
@@ -161,6 +179,11 @@ export class ArticleView {
     void this.router.navigate(['/']);
   }
 
+  /**
+   * Обработать изменения выделения, которые приходят из панели аннотаций.
+   *
+   * @param result Результат захвата или сброса выделения.
+   */
   protected handleSelectionCaptured(result: SelectionCaptureResult): void {
     switch (result.kind) {
       case SelectionCaptureKind.Cleared:
@@ -185,6 +208,11 @@ export class ArticleView {
     }
   }
 
+  /**
+   * Сохранить новую аннотацию для текущей статьи.
+   *
+   * @param payload Данные новой аннотации вместе с выбранным фрагментом.
+   */
   protected saveAnnotation(payload: AnnotationDraftPayload): void {
     const article = this.article();
     const note = payload.note.trim();
@@ -211,11 +239,19 @@ export class ArticleView {
     this.statusMessage.set('Аннотация сохранена.');
   }
 
+  /**
+   * Удалить сохраненную аннотацию у текущей статьи.
+   *
+   * @param annotationId Идентификатор аннотации, которую нужно удалить.
+   */
   protected removeAnnotation(annotationId: string): void {
     this.storage.deleteAnnotation(annotationId);
     this.statusMessage.set('Аннотация удалена.');
   }
 
+  /**
+   * Сбросить локальное состояние черновика аннотации.
+   */
   protected clearPendingSelection(): void {
     this.pendingSelection.set(null);
     this.annotationColor.set(this.palette[0]);

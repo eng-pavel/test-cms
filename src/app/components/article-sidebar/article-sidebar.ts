@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-import type { Article } from '../../../../interfaces/article.interface';
+import type { Article } from '../../interfaces/article.interface';
 
+/**
+ * Отобразить боковую панель со списком статей и действием создания новой статьи.
+ */
 @Component({
   selector: 'app-article-sidebar',
   standalone: true,

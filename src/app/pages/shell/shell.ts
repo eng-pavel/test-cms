@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
+import { ArticleSidebar } from '../../components/article-sidebar/article-sidebar';
 import { StorageService } from '../../services/storage.service';
-import { ArticleSidebar } from '../cms/components/article-sidebar/article-sidebar';
 
+/**
+ * Построить основной каркас интерфейса с боковой панелью и маршрутизируемой рабочей областью.
+ */
 @Component({
   selector: 'app-shell',
   standalone: true,
@@ -27,11 +30,19 @@ export class Shell {
     ),
   );
 
+  /**
+   * Открыть выбранную статью в правой рабочей области.
+   *
+   * @param articleId Идентификатор статьи, которую нужно открыть.
+   */
   protected openArticle(articleId: string): void {
     this.storage.selectArticle(articleId);
     void this.router.navigate(['/articles', articleId]);
   }
 
+  /**
+   * Открыть страницу создания новой статьи из боковой панели.
+   */
   protected openArticleCreation(): void {
     this.storage.selectArticle(null);
     void this.router.navigate(['/new']);

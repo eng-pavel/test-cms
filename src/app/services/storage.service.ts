@@ -10,6 +10,9 @@ const SELECTED_ARTICLE_STORAGE_KEY = 'test-cms.selected-article-id';
 @Injectable({
   providedIn: 'root',
 })
+/**
+ * Хранить статьи и аннотации в localStorage и отдавать реактивные данные приложению.
+ */
 export class StorageService {
   private readonly articlesState = signal<Article[]>(this.loadArticles());
   private readonly annotationsState = signal<Annotation[]>(this.loadAnnotations());
@@ -22,12 +25,12 @@ export class StorageService {
   );
 
   readonly selectedArticleId = computed(() => this.selectedArticleIdState());
-  readonly selectedArticle = computed(
-    () =>
-      this.articles().find((article: Article) => article.id === this.selectedArticleIdState()) ??
-      null,
-  );
 
+  /**
+   * Вернуть статью по идентификатору или null, если статья не найдена.
+   *
+   * @param articleId Идентификатор статьи.
+   */
   articleById(articleId: string | null): Article | null {
     if (!articleId) {
       return null;
@@ -36,6 +39,11 @@ export class StorageService {
     return this.articles().find((article: Article) => article.id === articleId) ?? null;
   }
 
+  /**
+   * Вернуть все аннотации статьи, отсортированные по позиции в тексте.
+   *
+   * @param articleId Идентификатор статьи.
+   */
   annotationsForArticle(articleId: string | null): Annotation[] {
     if (!articleId) {
       return [];
@@ -46,6 +54,11 @@ export class StorageService {
       .sort((left: Annotation, right: Annotation) => left.start - right.start);
   }
 
+  /**
+   * Создать новую статью, сохранить ее и сделать выбранной.
+   *
+   * @param payload Данные новой статьи.
+   */
   createArticle(payload: Pick<Article, 'title' | 'content'>): Article {
     const now = new Date().toISOString();
     const article: Article = {
@@ -63,6 +76,12 @@ export class StorageService {
     return article;
   }
 
+  /**
+   * Обновить статью и очистить аннотации, если изменился ее текст.
+   *
+   * @param articleId Идентификатор статьи.
+   * @param payload Новые данные статьи.
+   */
   updateArticle(articleId: string, payload: Pick<Article, 'title' | 'content'>): Article | null {
     let updatedArticle: Article | null = null;
     let shouldClearAnnotations = false;
@@ -97,6 +116,11 @@ export class StorageService {
     return updatedArticle;
   }
 
+  /**
+   * Удалить статью вместе с аннотациями и обновить выбранную статью.
+   *
+   * @param articleId Идентификатор статьи, которую нужно удалить.
+   */
   deleteArticle(articleId: string): void {
     this.articlesState.update((articles: Article[]) =>
       articles.filter((article: Article) => article.id !== articleId),
@@ -115,11 +139,21 @@ export class StorageService {
     this.persistAnnotations();
   }
 
+  /**
+   * Сохранить идентификатор выбранной статьи для следующих посещений.
+   *
+   * @param articleId Идентификатор статьи или null для сброса выбора.
+   */
   selectArticle(articleId: string | null): void {
     this.selectedArticleIdState.set(articleId);
     this.persistSelectedArticleId();
   }
 
+  /**
+   * Создать и сохранить новую аннотацию для статьи.
+   *
+   * @param payload Данные новой аннотации.
+   */
   createAnnotation(payload: Omit<Annotation, 'id' | 'createdAt'>): Annotation {
     const annotation: Annotation = {
       ...payload,
@@ -133,6 +167,11 @@ export class StorageService {
     return annotation;
   }
 
+  /**
+   * Удалить одну аннотацию по идентификатору.
+   *
+   * @param annotationId Идентификатор аннотации.
+   */
   deleteAnnotation(annotationId: string): void {
     this.annotationsState.update((annotations: Annotation[]) =>
       annotations.filter((annotation: Annotation) => annotation.id !== annotationId),
@@ -140,12 +179,11 @@ export class StorageService {
     this.persistAnnotations();
   }
 
-  hasOverlappingAnnotation(articleId: string, start: number, end: number): boolean {
-    return this.annotationsForArticle(articleId).some(
-      (annotation: Annotation) => start < annotation.end && end > annotation.start,
-    );
-  }
-
+  /**
+   * Удалить все аннотации, которые относятся к указанной статье.
+   *
+   * @param articleId Идентификатор статьи.
+   */
   private deleteAnnotationsForArticle(articleId: string): void {
     this.annotationsState.update((annotations: Annotation[]) =>
       annotations.filter((annotation: Annotation) => annotation.articleId !== articleId),
@@ -153,14 +191,23 @@ export class StorageService {
     this.persistAnnotations();
   }
 
+  /**
+   * Прочитать список статей из localStorage.
+   */
   private loadArticles(): Article[] {
     return this.readStorage<Article[]>(ARTICLES_STORAGE_KEY, []);
   }
 
+  /**
+   * Прочитать список аннотаций из localStorage.
+   */
   private loadAnnotations(): Annotation[] {
     return this.readStorage<Annotation[]>(ANNOTATIONS_STORAGE_KEY, []);
   }
 
+  /**
+   * Восстановить выбранную статью или взять первую сохраненную статью.
+   */
   private loadSelectedArticleId(): string | null {
     const selectedArticleId = this.readStorage<string | null>(SELECTED_ARTICLE_STORAGE_KEY, null);
 
@@ -171,18 +218,33 @@ export class StorageService {
     return this.articlesState()?.[0]?.id ?? null;
   }
 
+  /**
+   * Сохранить текущий список статей.
+   */
   private persistArticles(): void {
     this.writeStorage(ARTICLES_STORAGE_KEY, this.articlesState());
   }
 
+  /**
+   * Сохранить текущий список аннотаций.
+   */
   private persistAnnotations(): void {
     this.writeStorage(ANNOTATIONS_STORAGE_KEY, this.annotationsState());
   }
 
+  /**
+   * Сохранить идентификатор выбранной статьи.
+   */
   private persistSelectedArticleId(): void {
     this.writeStorage(SELECTED_ARTICLE_STORAGE_KEY, this.selectedArticleIdState());
   }
 
+  /**
+   * Прочитать JSON-значение из localStorage с fallback для пустых и битых данных.
+   *
+   * @param key Ключ в localStorage.
+   * @param fallback Значение по умолчанию при отсутствии или ошибке чтения.
+   */
   private readStorage<T>(key: string, fallback: T): T {
     if (globalThis.localStorage === undefined) {
       return fallback;
@@ -201,6 +263,12 @@ export class StorageService {
     }
   }
 
+  /**
+   * Записать JSON-сериализуемое значение в localStorage.
+   *
+   * @param key Ключ в localStorage.
+   * @param value Значение для записи.
+   */
   private writeStorage<T>(key: string, value: T): void {
     if (globalThis.localStorage === undefined) {
       return;

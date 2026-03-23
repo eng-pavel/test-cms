@@ -10,12 +10,12 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { SelectionCaptureKind } from '../../../../enums/selection-capture-kind.enum';
-import type { Annotation } from '../../../../interfaces/annotation.interface';
-import type { ArticleDraft } from '../../../../interfaces/article.interface';
-import type { PendingSelection } from '../../../../interfaces/pending-selection.interface';
-import type { SelectionCaptureResult } from '../../../../interfaces/selection-capture-result.interface';
-import type { TextSegment } from '../../../../interfaces/text-segment.interface';
+import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
+import type { Annotation } from '../../interfaces/annotation.interface';
+import type { ArticleDraft } from '../../interfaces/article.interface';
+import type { PendingSelection } from '../../interfaces/pending-selection.interface';
+import type { SelectionCaptureResult } from '../../interfaces/selection-capture-result.interface';
+import type { TextSegment } from '../../interfaces/text-segment.interface';
 
 interface AnnotationDraftPayload {
   color: string;
@@ -33,6 +33,9 @@ interface TooltipState {
 const TOOLTIP_GAP = 6;
 const SURFACE_PADDING = 8;
 
+/**
+ * Отобразить текст статьи, форму аннотации, подсказку и список сохраненных пометок.
+ */
 @Component({
   selector: 'app-annotation-panel',
   standalone: true,
@@ -64,6 +67,9 @@ export class AnnotationPanel {
   readonly pendingSelectionCleared = output<void>();
   readonly annotationRemoved = output<string>();
 
+  /**
+   * Захватить выделенный фрагмент текста и передать результат родительской странице.
+   */
   protected captureSelection(): void {
     if (!this.canAnnotate()) {
       this.selectionCaptured.emit({ kind: SelectionCaptureKind.RequiresSave });
@@ -113,6 +119,9 @@ export class AnnotationPanel {
     selection.removeAllRanges();
   }
 
+  /**
+   * Отправить текущий черновик аннотации после выбора текста и заполнения комментария.
+   */
   protected saveAnnotation(): void {
     const selection = this.pendingSelection();
 
@@ -127,6 +136,12 @@ export class AnnotationPanel {
     });
   }
 
+  /**
+   * Измерить и показать всплывающую подсказку рядом с наведенной аннотацией.
+   *
+   * @param event Событие наведения на аннотированный фрагмент.
+   * @param annotation Аннотация, для которой нужно показать подсказку.
+   */
   protected showTooltip(event: MouseEvent, annotation: Annotation): void {
     const target = event.currentTarget;
     const surface = this.surfaceRef()?.nativeElement;
@@ -176,16 +191,32 @@ export class AnnotationPanel {
     });
   }
 
+  /**
+   * Скрыть подсказку, когда указатель уходит с аннотированного фрагмента.
+   */
   protected hideTooltip(): void {
     this.tooltip.set(null);
   }
 
+  /**
+   * Проверить, пересекается ли новое выделение с уже существующей аннотацией.
+   *
+   * @param start Начальная позиция нового выделения.
+   * @param end Конечная позиция нового выделения.
+   */
   private hasOverlappingAnnotation(start: number, end: number): boolean {
     return this.annotations().some(
       (annotation: Annotation) => start < annotation.end && end > annotation.start,
     );
   }
 
+  /**
+   * Убрать начальные и конечные пробелы у захваченного выделения.
+   *
+   * @param content Полный текст статьи.
+   * @param start Начальная позиция выделения.
+   * @param end Конечная позиция выделения.
+   */
   private normalizeSelection(content: string, start: number, end: number): PendingSelection | null {
     let normalizedStart = start;
     let normalizedEnd = end;
@@ -211,6 +242,13 @@ export class AnnotationPanel {
     };
   }
 
+  /**
+   * Перевести координаты DOM-диапазона в символьное смещение внутри текста превью.
+   *
+   * @param root Корневой элемент текста превью.
+   * @param node Узел, относительно которого вычисляется смещение.
+   * @param offset Смещение внутри DOM-узла.
+   */
   private getOffsetWithin(root: HTMLElement, node: Node, offset: number): number {
     const range = document.createRange();
     range.selectNodeContents(root);
@@ -219,6 +257,14 @@ export class AnnotationPanel {
     return range.toString().length;
   }
 
+  /**
+   * Вычислить видимую позицию подсказки рядом с аннотированным фрагментом.
+   *
+   * @param anchorRect Границы аннотированного фрагмента.
+   * @param surfaceRect Границы поверхности, внутри которой рисуется подсказка.
+   * @param tooltipWidth Фактическая ширина подсказки.
+   * @param tooltipHeight Фактическая высота подсказки.
+   */
   private getTooltipPosition(
     anchorRect: DOMRect,
     surfaceRect: DOMRect,
