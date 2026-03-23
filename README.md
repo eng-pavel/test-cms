@@ -1,59 +1,74 @@
-# TestCms
+# Приложение для аннотации текста
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+## Описание
+Одностраничное приложение (SPA) на Angular для создания, редактирования и удаления статей, а также для выделения и аннотирования фрагментов текста.
 
-## Development server
+Все данные приложения (статьи, аннотации и связанные сущности) сохраняются в `localStorage`, что эмулирует работу с мок-сервером.
 
-To start a local development server, run:
+## Системные требования
+- Angular `21.1.0`
+- Node.js `24.10.0` и выше
 
+## Установка зависимостей
+```bash
+npm install
+```
+
+## Запуск приложения
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+После запуска приложение будет доступно по адресу:
+`http://localhost:4200/`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+## Сборка проекта
 ```bash
-ng generate component component-name
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Результат сборки будет размещён в директории `dist/`.
 
-```bash
-ng generate --help
-```
+## Задание
+Необходимо реализовать приложение для аннотации текста со следующими возможностями.
 
-## Building
+### CRUD для статей
+- создание статьи;
+- редактирование статьи;
+- удаление статьи;
+- просмотр списка доступных статей;
+- выбор статьи для просмотра и редактирования.
 
-To build the project run:
+Статья представляет собой обычный текст без форматирования и изображений.
 
-```bash
-ng build
-```
+### Аннотирование текста
+- возможность выделить произвольный фрагмент текста;
+- назначение выделенному фрагменту цвета и аннотации;
+- подчёркивание выделенного текста выбранным цветом;
+- отображение аннотации при наведении курсора на выделенный текст;
+- сохранение всех аннотаций в `localStorage`;
+- восстановление аннотаций при повторном открытии статьи.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Ограничения
+- не использовать сторонние библиотеки для UI;
+- не использовать сторонние библиотеки для аннотаций;
+- не использовать сторонние библиотеки для хранения данных;
+- не использовать сторонние библиотеки для всплывающих подсказок;
+- реализация должна быть выполнена средствами Angular, TypeScript, HTML, CSS/SCSS и встроенных API браузера.
 
-## Running unit tests
+## Технические требования
+- Framework: Angular `18+`
+- Язык: TypeScript
+- Стили: CSS/SCSS
+- Архитектура:
+  - разделение ответственности между компонентами и сервисами;
+  - использование реактивных подходов приветствуется.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Критерии оценки
+- чистота и читаемость кода;
+- соответствие требованиям задания;
+- удобство UX/UI;
+- структура проекта;
+- использование Angular-подходов: компоненты, сервисы, DI, реактивность;
+- работа с DOM без сторонних библиотек;
+- реализация подсветки и аннотаций средствами DOM, например через `Range API`.
