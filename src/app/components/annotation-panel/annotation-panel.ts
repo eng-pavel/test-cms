@@ -1,14 +1,18 @@
-import type { ElementRef } from '@angular/core';
+import type { ElementRef, OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  inject,
+  Injector,
   input,
   output,
   signal,
   viewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { SelectionCaptureKind } from '../../enums/selection-capture-kind.enum';
 import type { Annotation } from '../../interfaces/annotation.interface';
@@ -39,17 +43,19 @@ const SURFACE_PADDING = 8;
 @Component({
   selector: 'app-annotation-panel',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './annotation-panel.html',
   styleUrl: './annotation-panel.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnnotationPanel {
+export class AnnotationPanel implements OnInit {
+  private readonly injector = inject(Injector);
   protected readonly previewTextRef = viewChild<ElementRef<HTMLElement>>('previewText');
   protected readonly surfaceRef = viewChild<ElementRef<HTMLElement>>('surfaceBox');
   protected readonly tooltipRef = viewChild<ElementRef<HTMLElement>>('tooltipBox');
   protected readonly tooltip = signal<TooltipState | null>(null);
   protected readonly annotationsCount = computed(() => this.annotations().length);
+  protected readonly noteControl = new FormControl('', { nonNullable: true });
 
   readonly draft = input.required<ArticleDraft>();
   readonly canAnnotate = input(false);
@@ -66,6 +72,31 @@ export class AnnotationPanel {
   readonly annotationSaved = output<AnnotationDraftPayload>();
   readonly pendingSelectionCleared = output<void>();
   readonly annotationRemoved = output<string>();
+
+  /**
+   * Настроить подписку на изменения поля текста аннотации.
+   */
+  constructor() {
+    this.noteControl.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe((value: string) => this.annotationNoteChanged.emit(value));
+  }
+
+  /**
+   * Синхронизировать реактивный контрол аннотации с входным значением.
+   */
+  ngOnInit(): void {
+    effect(
+      () => {
+        const annotationNote = this.annotationNote();
+
+        if (this.noteControl.value !== annotationNote) {
+          this.noteControl.setValue(annotationNote, { emitEvent: false });
+        }
+      },
+      { injector: this.injector },
+    );
+  }
 
   /**
    * Захватить выделенный фрагмент текста и передать результат родительской странице.
@@ -132,7 +163,7 @@ export class AnnotationPanel {
     this.annotationSaved.emit({
       selection,
       color: this.annotationColor(),
-      note: this.annotationNote(),
+      note: this.noteControl.value,
     });
   }
 

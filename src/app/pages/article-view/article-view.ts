@@ -1,9 +1,11 @@
+import type { OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
+  Injector,
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -36,7 +38,8 @@ interface AnnotationDraftPayload {
   styleUrl: './article-view.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleView {
+export class ArticleView implements OnInit {
+  private readonly injector = inject(Injector);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly storage = inject(StorageService);
@@ -105,21 +108,24 @@ export class ArticleView {
   /**
    * Синхронизировать выбранную статью с маршрутом и сообщениями страницы.
    */
-  constructor() {
-    effect(() => {
-      const article = this.article();
+  ngOnInit(): void {
+    effect(
+      () => {
+        const article = this.article();
 
-      if (!article) {
-        this.storage.selectArticle(null);
+        if (!article) {
+          this.storage.selectArticle(null);
+          this.clearPendingSelection();
+          this.statusMessage.set('Статья не найдена. Выберите другую статью в меню.');
+          return;
+        }
+
+        this.storage.selectArticle(article.id);
         this.clearPendingSelection();
-        this.statusMessage.set('Статья не найдена. Выберите другую статью в меню.');
-        return;
-      }
-
-      this.storage.selectArticle(article.id);
-      this.clearPendingSelection();
-      this.statusMessage.set(`Открыта статья «${article.title}».`);
-    });
+        this.statusMessage.set(`Открыта статья «${article.title}».`);
+      },
+      { injector: this.injector },
+    );
   }
 
   /**

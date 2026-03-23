@@ -1,9 +1,11 @@
+import type { OnInit } from '@angular/core';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   effect,
   inject,
+  Injector,
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -26,7 +28,8 @@ import { StorageService } from '../../services/storage.service';
   styleUrl: './article-edit.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleEdit {
+export class ArticleEdit implements OnInit {
+  private readonly injector = inject(Injector);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly storage = inject(StorageService);
@@ -56,35 +59,38 @@ export class ArticleEdit {
   /**
    * Синхронизировать редактируемый черновик с текущей статьей из маршрута.
    */
-  constructor() {
-    effect(() => {
-      const article = this.article();
-      const articleId = this.articleId();
+  ngOnInit(): void {
+    effect(
+      () => {
+        const article = this.article();
+        const articleId = this.articleId();
 
-      if (articleId && !article) {
-        this.statusMessage.set('Статья не найдена. Выберите другую статью в боковом меню.');
-        return;
-      }
+        if (articleId && !article) {
+          this.statusMessage.set('Статья не найдена. Выберите другую статью в боковом меню.');
+          return;
+        }
 
-      if (article) {
-        this.storage.selectArticle(article.id);
+        if (article) {
+          this.storage.selectArticle(article.id);
+          this.draft.set({
+            id: article.id,
+            title: article.title,
+            content: article.content,
+          });
+          this.statusMessage.set(`Редактирование статьи «${article.title}».`);
+          return;
+        }
+
+        this.storage.selectArticle(null);
         this.draft.set({
-          id: article.id,
-          title: article.title,
-          content: article.content,
+          id: null,
+          title: '',
+          content: '',
         });
-        this.statusMessage.set(`Редактирование статьи «${article.title}».`);
-        return;
-      }
-
-      this.storage.selectArticle(null);
-      this.draft.set({
-        id: null,
-        title: '',
-        content: '',
-      });
-      this.statusMessage.set('Создайте новую статью.');
-    });
+        this.statusMessage.set('Создайте новую статью.');
+      },
+      { injector: this.injector },
+    );
   }
 
   /**

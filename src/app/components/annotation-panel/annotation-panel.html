@@ -78,12 +78,7 @@
 
       <label class="field">
         <span>Аннотация</span>
-        <textarea
-          rows="3"
-          [ngModel]="annotationNote()"
-          (ngModelChange)="annotationNoteChanged.emit($event)"
-          placeholder="Напишите пояснение"
-        ></textarea>
+        <textarea rows="3" [formControl]="noteControl" placeholder="Напишите пояснение"></textarea>
       </label>
 
       <div class="annotation-actions">

@@ -16,19 +16,13 @@
 
   <label class="field">
     <span>Заголовок</span>
-    <input
-      type="text"
-      [ngModel]="draft().title"
-      (ngModelChange)="draftTitleChanged.emit($event)"
-      placeholder="Например, обзор протокола"
-    />
+    <input type="text" [formControl]="titleControl" placeholder="Например, обзор протокола" />
   </label>
 
   <label class="field">
     <span>Текст статьи</span>
     <textarea
-      [ngModel]="draft().content"
-      (ngModelChange)="draftContentChanged.emit($event)"
+      [formControl]="contentControl"
       rows="14"
       placeholder="Введите текст без форматирования"
     ></textarea>
