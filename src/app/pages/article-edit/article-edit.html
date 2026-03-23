@@ -22,4 +22,12 @@
       (confirmed)="confirmDeleteArticle()"
     />
   }
+
+  @if (resetAnnotationsDialogMessage(); as message) {
+    <app-confirm-dialog
+      [message]="message"
+      (cancelled)="cancelResetAnnotations()"
+      (confirmed)="confirmResetAnnotations()"
+    />
+  }
 }

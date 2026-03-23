@@ -43,6 +43,7 @@ export class ArticleEdit {
     content: '',
   });
   protected readonly deleteDialogMessage = signal<string | null>(null);
+  protected readonly resetAnnotationsDialogMessage = signal<string | null>(null);
   protected readonly statusMessage = signal('Создайте новую статью.');
   protected readonly hasUnsavedContentChanges = computed(() => {
     const article = this.article();
@@ -103,23 +104,22 @@ export class ArticleEdit {
    * Сохранить черновик как новую или существующую статью и перейти на просмотр.
    */
   protected saveArticle(): void {
-    const draft = this.draft();
-    const title = draft.title.trim();
-    const content = draft.content.trim();
+    this.persistArticle(false);
+  }
 
-    if (!title || !content) {
-      this.statusMessage.set('У статьи должны быть заполнены заголовок и текст.');
-      return;
-    }
+  /**
+   * Закрыть предупреждение о сбросе аннотаций.
+   */
+  protected cancelResetAnnotations(): void {
+    this.resetAnnotationsDialogMessage.set(null);
+  }
 
-    if (!draft.id) {
-      const createdArticle = this.storage.createArticle({ title, content });
-      void this.router.navigate(['/articles', createdArticle.id]);
-      return;
-    }
-
-    this.storage.updateArticle(draft.id, { title, content });
-    void this.router.navigate(['/articles', draft.id]);
+  /**
+   * Подтвердить сохранение статьи со сбросом аннотаций.
+   */
+  protected confirmResetAnnotations(): void {
+    this.resetAnnotationsDialogMessage.set(null);
+    this.persistArticle(true);
   }
 
   /**
@@ -166,5 +166,43 @@ export class ArticleEdit {
     }
 
     void this.router.navigate(['/']);
+  }
+
+  /**
+   * Сохранить статью и при необходимости запросить подтверждение сброса аннотаций.
+   *
+   * @param skipResetWarning Пропустить предупреждение о сбросе аннотаций.
+   */
+  private persistArticle(skipResetWarning: boolean): void {
+    const draft = this.draft();
+    const title = draft.title.trim();
+    const content = draft.content.trim();
+    const article = this.article();
+
+    if (!title || !content) {
+      this.statusMessage.set('У статьи должны быть заполнены заголовок и текст.');
+      return;
+    }
+
+    if (!draft.id) {
+      const createdArticle = this.storage.createArticle({ title, content });
+      void this.router.navigate(['/articles', createdArticle.id]);
+      return;
+    }
+
+    if (
+      article &&
+      article.content !== content &&
+      this.storage.annotationsForArticle(article.id).length > 0 &&
+      !skipResetWarning
+    ) {
+      this.resetAnnotationsDialogMessage.set(
+        `Изменение текста удалит все аннотации статьи "${article.title}". Продолжить?`,
+      );
+      return;
+    }
+
+    this.storage.updateArticle(draft.id, { title, content });
+    void this.router.navigate(['/articles', draft.id]);
   }
 }

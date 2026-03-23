@@ -159,6 +159,10 @@ h3 {
   gap: 12px;
 }
 
+.annotation-actions {
+  gap: 10px;
+}
+
 .field {
   display: flex;
   flex-direction: column;
